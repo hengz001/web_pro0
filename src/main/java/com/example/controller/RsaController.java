@@ -53,7 +53,7 @@ public class RsaController {
             ex.printStackTrace();
         }
 
-        return "encrypt failed!";
+        return "encrypt failed! 请检测数据 数据不能大于RSA密钥";
     }
 
     @RequestMapping("/decrypt")
@@ -69,6 +69,6 @@ public class RsaController {
             ex.printStackTrace();
         }
 
-        return "decrypt failed!";
+        return "decrypt failed! 请检测数据 数据不能大于RSA密钥";
     }
 }
