@@ -78,12 +78,33 @@
         var plaintextRsa = $('#plaintextRsa').val();
         var ciphertextRsa = $('#ciphertextRsa').val();
 
-        if(opt==1 && plaintextRsa==""){
-            alert("请输入明文数据");
-            return ;
-        }else if(opt==0 && ciphertextRsa==""){
-            alert("请输入密文数据");
-            return ;
+        // if(opt==1 && plaintextRsa==""){
+        //     alert("请输入明文数据");
+        //     return ;
+        // }else if(opt==0 && ciphertextRsa==""){
+        //     alert("请输入密文数据");
+        //     return ;
+        // }
+        if(opt==1){
+            if(plaintextRsa==""){
+                alert("请输入明文数据");
+                return ;
+            }
+
+            if(plaintextRsa.length != n.length){
+                alert("NoPadding模式 明文数据要等于RSA模长");
+                return ;
+            }
+
+        }else if(opt==0){
+            if(ciphertextRsa==""){
+                alert("请输入密文数据");
+                return ;
+            }
+            if(ciphertextRsa.length != n.length){
+                alert("NoPadding模式 密文数据要等于RSA模长");
+                return ;
+            }
         }
 
         $('#ffRsa').form({
