@@ -109,9 +109,32 @@ public class RsaServiceImpl implements RsaService {
 
     //20200525zhuheng rsa encrypt decrypt 1 encrypt 0 decrypt
     public byte[] rsaEncryptDecrypt(RSAKey key, int mode, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        Cipher cipher = Cipher.getInstance("RSA");
+        Cipher cipher = Cipher.getInstance("RSA/ECB/NoPadding");
         cipher.init(mode == Cipher.ENCRYPT_MODE? Cipher.ENCRYPT_MODE: Cipher.DECRYPT_MODE, (Key)key);
         return cipher.doFinal(in);
+    }
+
+    //20200601zhuheng
+    public byte[] rsaSign(RSAKey key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        return rsaEncryptDecrypt(key,Cipher.ENCRYPT_MODE,in);
+    }
+    public boolean rsaVerify(RSAKey key, byte data[], byte sign[]) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        boolean bn =true;
+        byte out[] = rsaEncryptDecrypt(key,Cipher.DECRYPT_MODE,sign);
+       //compare
+        if(data.length != out.length){
+            bn = false;
+//            System.out.println("长度不一致: "+(data.length-out.length));
+        }else{
+            for(int i=0; i<data.length; i++){
+                if(data[i] != out[i]){
+//                    System.out.println("数据不一致: "+i);
+                    bn = false;
+                    break;
+                }
+            }
+        }
+        return bn;
     }
     
 //    @Test

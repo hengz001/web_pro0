@@ -71,4 +71,41 @@ public class RsaController {
 
         return "decrypt failed! 请检测数据 数据不能大于RSA密钥";
     }
+
+    @RequestMapping("/sign")
+    @ResponseBody
+    String rsaSign(String n,String e,String d,String p,String q,
+                     String dp,String dq,String qmp,String plaintextRsa){
+        try {
+            Map map = rsaService.rsaCombination(n,e,d,p,q,dp,dq,qmp);
+            byte in[] = toolService.hex2byte(plaintextRsa,plaintextRsa.length());
+            byte out[] = rsaService.rsaSign((RSAKey) map.get("privateKey"),in);
+            return toolService.byte2hex(out,out.length);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "encrypt failed! 请检测数据 数据不能大于RSA密钥";
+    }
+
+    @RequestMapping("/verify")
+    @ResponseBody
+    String rsaVerify(String n,String e,String d,String p,String q,
+                      String dp,String dq,String qmp,String plaintextRsa,String ciphertextRsa){
+        try {
+            Map map = rsaService.rsaCombination(n,e,d,p,q,dp,dq,qmp);
+            byte in[] = toolService.hex2byte(plaintextRsa,plaintextRsa.length());
+            byte sign[] = toolService.hex2byte(ciphertextRsa,ciphertextRsa.length());
+            boolean bn = rsaService.rsaVerify((RSAKey) map.get("publicKey"),in,sign);
+            if(bn){
+//                System.out.println("签名成功");
+                return "签名成功";
+            }else{
+//                System.out.println("签名失败");
+                return "签名失败";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "encrypt failed! 请检测数据 数据不能大于RSA密钥";
+    }
 }

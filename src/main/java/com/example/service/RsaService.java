@@ -26,9 +26,15 @@ public interface RsaService {
 
     //20200525zhuheng key combination
     Map<String, RSAKey> rsaCombination(Map<String,String> map) throws NoSuchAlgorithmException, InvalidKeySpecException ;
+
     Map<String, RSAKey> rsaCombination(String n0, String e0,String d0,String p0,String q0,String dp0,String dq0,String qmp0) throws NoSuchAlgorithmException, InvalidKeySpecException;
 
     //20200525zhuheng rsa encrypt decrypt 1 encrypt 0 decrypt
     byte[] rsaEncryptDecrypt(RSAKey key, int mode,byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException ;
 
+    //20200601zhuheng
+    public byte[] rsaSign(RSAKey key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException ;
+
+    //20200601zhuheng
+    public boolean rsaVerify(RSAKey key, byte data[], byte sign[]) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException ;
 }

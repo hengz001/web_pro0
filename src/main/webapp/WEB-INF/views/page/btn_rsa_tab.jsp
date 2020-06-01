@@ -54,6 +54,8 @@
             <a id="generateRsa" class="easyui-linkbutton" style="width:100px;">生成密钥</a>
             <a id="rsaEncrypt" class="easyui-linkbutton" style="width:100px;">加密</a>
             <a id="rsaDecrypt" class="easyui-linkbutton" style="width:100px;">解密</a>
+            <a id="rsaSign" class="easyui-linkbutton" style="width:100px;">签名</a>
+            <a id="rsaVerify" class="easyui-linkbutton" style="width:100px;">验签</a>
         </div>
     </form>
 
@@ -78,33 +80,48 @@
         var plaintextRsa = $('#plaintextRsa').val();
         var ciphertextRsa = $('#ciphertextRsa').val();
 
-        // if(opt==1 && plaintextRsa==""){
-        //     alert("请输入明文数据");
-        //     return ;
-        // }else if(opt==0 && ciphertextRsa==""){
-        //     alert("请输入密文数据");
-        //     return ;
-        // }
-        if(opt==1){
-            if(plaintextRsa==""){
-                alert("请输入明文数据");
-                return ;
-            }
+        switch(opt){
+            case 0://解密
+                if(ciphertextRsa==""){
+                    alert("请输入密文数据!");
+                    return ;
+                }
+                if(ciphertextRsa.length != n.length){
+                    alert("密文数据要等于RSA模长!");
+                    return ;
+                }
+                break;
+            case 1://加密
+                if(plaintextRsa==""){
+                    alert("请输入明文数据!");
+                    return ;
+                }
 
-            if(plaintextRsa.length != n.length){
-                alert("NoPadding模式 明文数据要等于RSA模长");
-                return ;
-            }
+                if(plaintextRsa.length != n.length){
+                    alert("NoPadding模式 明文数据要等于RSA模长!");
+                    return ;
+                }
+                break;
+            case 3://验签
+                if(ciphertextRsa==""){
+                    alert("请输入签名!");
+                    return ;
+                }
+                if(ciphertextRsa.length != n.length){
+                    alert("签名等于RSA模长!");
+                    return ;
+                }
+            case 2://签名
+                if(plaintextRsa==""){
+                    alert("请输入签名数据!");
+                    return ;
+                }
 
-        }else if(opt==0){
-            if(ciphertextRsa==""){
-                alert("请输入密文数据");
-                return ;
-            }
-            if(ciphertextRsa.length != n.length){
-                alert("NoPadding模式 密文数据要等于RSA模长");
-                return ;
-            }
+                if(plaintextRsa.length != n.length){
+                    alert("NoHash模式 签名数据要等于RSA模长!");
+                    return ;
+                }
+                break;
         }
 
         $('#ffRsa').form({
@@ -113,14 +130,16 @@
                 // alert(1);
             },
             success:function(data){
-                alert('successfully.');
+                alert('接收数据.');
                 // alert(data);
-                if(opt==1){
+                if(opt==1 || opt== 2){
                     $('#ciphertextRsa').textbox('setValue',data);
                     $('#ciphertextRsaLen').html(data.length);
-                }else{
+                }else if(opt==0){
                     $('#plaintextRsa').textbox('setValue',data);
                     $('#plaintextRsaLen').html(data.length);
+                }else if(opt==3){
+                    alert(data);
                 }
             }
         });
@@ -137,6 +156,16 @@
     $('#rsaDecrypt').bind('click',function(){
         // alert('解密');
         formOpt(0,'rsa/decrypt');
+    });
+
+    //sign
+    $('#rsaSign').bind('click',function(){
+        formOpt(2,'rsa/sign');
+    });
+
+    //verify
+    $('#rsaVerify').bind('click',function(){
+        formOpt(3,'rsa/verify');
     });
 
     //generate rsa key

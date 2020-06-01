@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.service.impl.RsaServiceImpl;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Test;
 
@@ -16,6 +17,7 @@ import java.security.spec.RSAPrivateCrtKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class RsaTest {
@@ -23,21 +25,22 @@ public class RsaTest {
     public void rsaTest() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         //generate key pair
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        keyPairGenerator.initialize(1024, new SecureRandom());
+        keyPairGenerator.initialize(512, new SecureRandom());
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         System.out.println(new String(Base64.encodeBase64(publicKey.getEncoded())));
         System.out.println(new String(Base64.encodeBase64(privateKey.getEncoded())));
         //encrypt
-        String in = "zhuheng";
-        Cipher cipher = Cipher.getInstance("RSA");
+        String in = "zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0";
+        Cipher cipher = Cipher.getInstance("RSA/ECB/NoPadding");
+//        Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte out[] = cipher.doFinal(in.getBytes());
         System.out.println(Base64.encodeBase64String(out));
 
         //decrypt
-        Cipher cipher1 = Cipher.getInstance("RSA");
+        Cipher cipher1 = Cipher.getInstance("RSA/ECB/NoPadding");
         cipher1.init(Cipher.DECRYPT_MODE,privateKey);
         byte out1[] = cipher1.doFinal(out);
         System.out.println(new String(out1));
@@ -87,6 +90,70 @@ public class RsaTest {
         cipher1.init(Cipher.DECRYPT_MODE,priK);
         byte out1[] = cipher1.doFinal(out);
         System.out.println(new String(out1));
+    }
+
+    @Test
+    public void rsaTest3() throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
+        //generate key pair
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(512, new SecureRandom());
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
+        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+
+//        Set<String> set = Security.getAlgorithms("Signature");
+//        Set<String> set = Security.getAlgorithms("Cipher");
+//        for (String str : set) {
+//            System.out.println(str);
+//        }
+//        byte bs0[] = {1,2,3,4,5,6};
+//        byte bs1[] = {1,2,3,4,5};
+//        boolean bn = true;
+//        if(bs0.length != bs1.length){
+//            bn = false;
+//        }else{
+//            for(int i=0; i<bs0.length; i++){
+//                if(bs0[i] != bs1[i]){
+//                    bn = false;
+//                    break;
+//                }
+//            }
+//        }
+//        System.out.println("byte: "+ bn);
+
+        String in = "zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0zhuheng0";
+        RsaServiceImpl rsaServiceImple = new RsaServiceImpl();
+        byte[] sign = rsaServiceImple.rsaSign(privateKey,in.getBytes());
+//        System.out.println(in.getBytes().length+" : "+sign.length);
+        boolean bn = rsaServiceImple.rsaVerify(publicKey,in.getBytes(),sign);
+        System.out.println(bn);
+
+//        //encrypt
+//        Cipher cipher = Cipher.getInstance("RSA/ECB/NoPadding");
+////        Cipher cipher = Cipher.getInstance("RSA");
+//        cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+//        byte out[] = cipher.doFinal(in.getBytes());
+//        System.out.println(Base64.encodeBase64String(out));
+//
+//        //decrypt
+//        Cipher cipher1 = Cipher.getInstance("RSA/ECB/NoPadding");
+//        cipher1.init(Cipher.DECRYPT_MODE,publicKey);
+//        byte out1[] = cipher1.doFinal(out);
+//        System.out.println(new String(out1));
+
+//        String algo = "NONEWITHRSA";
+//        //sign
+//        byte in[] = new byte[117];
+//        Signature sign = Signature.getInstance(algo);
+//        sign.initSign(privateKey);
+//        sign.update(in);
+//        byte out[] = sign.sign();
+//
+//        //verify
+//        sign.initVerify(publicKey);
+//        sign.update(in);
+//        boolean bn = sign.verify(out);
+//        System.out.println("successfully: "+bn);
     }
 
     public void rsaCombination(Map<String,String> map) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
