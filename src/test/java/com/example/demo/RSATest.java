@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class RsaTest {
+public class RSATest {
     @Test
     public void rsaTest() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         //generate key pair
@@ -155,6 +155,15 @@ public class RsaTest {
 //        boolean bn = sign.verify(out);
 //        System.out.println("successfully: "+bn);
     }
+
+    @Test
+    public void rsaTest4(){
+//        Set<String> set = Security.getAlgorithms("Signature");
+        Set<String> set = Security.getAlgorithms("Cipher");
+        for (String str : set) {
+            System.out.println(str);
+        }
+ }
 
     public void rsaCombination(Map<String,String> map) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
 //        System.out.println("n= "+pri.getModulus().toString(16));

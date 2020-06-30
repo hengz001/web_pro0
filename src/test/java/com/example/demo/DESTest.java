@@ -16,7 +16,7 @@ import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DesTest {
+public class DESTest {
     @Test
     public void testOne(){
 //        byte key[] = {0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,};

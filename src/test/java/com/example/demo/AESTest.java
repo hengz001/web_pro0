@@ -1,13 +1,13 @@
 package com.example.demo;
 
-import com.sun.crypto.provider.AESKeyGenerator;
+//import com.sun.crypto.provider.AESKeyGenerator;
 import org.junit.Test;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
-import javax.crypto.spec.DESedeKeySpec;
+//import javax.crypto.SecretKeyFactory;
+//import javax.crypto.spec.DESKeySpec;
+//import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
@@ -17,7 +17,7 @@ import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AesTest {
+public class AESTest {
     @Test
     public void testOne(){
 //        byte key[] = {0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,};
