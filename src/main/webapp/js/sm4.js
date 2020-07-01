@@ -1,12 +1,12 @@
 
+setIvValid("#ivSm4",'length[32,32]')
 setTextbox('#keySm4');
 setTextbox('#ivSm4');
 setTextbox('#plaintextSm4');
 setTextbox('#ciphertextSm4');
 //
-setIvInput("#ivSm4",false);
-setIvValid("#ivSm4",'length[32,32]')
 setModeSelect("#modeSm4","#ivSm4");
+setIvInput("#ivSm4",false);
 //
 function form_opt(opt){
     var url;

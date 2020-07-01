@@ -15,8 +15,8 @@
             <tr>
                 <th>IV</th>
                 <td>
-<%--                    <input id="ivAes" name="ivAes" type="text" style="width:600px" maxlength="16" class="easyui-textbox" data-options="prompt:'请输入16进制数据'">--%>
-                    <input id="ivAes" name="ivAes" type="text" style="width:600px" maxlength="16">
+<%--                    <input id="ivAes" name="ivAes" type="text" style="width:600px" class="easyui-textbox" data-options="prompt:'请输入16进制数据'">--%>
+                    <input id="ivAes" name="ivAes" type="text" style="width:600px">
                     <span id="ivAesLen"></span>
                 </td>
             </tr>

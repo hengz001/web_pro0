@@ -1,14 +1,14 @@
 
 
+//
+setIvValid("#ivDes",'length[16,16]')
 setTextbox('#keyDes');
 setTextbox('#ivDes');
 setTextbox('#plaintextDes');
 setTextbox('#ciphertextDes');
-//
-setIvInput("#ivDes",false);
-setIvValid("#ivDes",'length[16,16]')
-setModeSelect("#modeDes","#ivDes");
 
+setModeSelect("#modeDes","#ivDes");
+setIvInput("#ivDes",false);
 
 function form_opt(opt){
     var url;

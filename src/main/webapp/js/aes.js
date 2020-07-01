@@ -1,13 +1,12 @@
 
+setIvValid("#ivAes",'length[32,32]')
+
 setTextbox('#keyAes');
 setTextbox('#ivAes');
 setTextbox('#plaintextAes');
 setTextbox('#ciphertextAes');
-//
-setIvInput("#ivAes",false);
-setIvValid("#ivAes",'length[32,32]')
 setModeSelect("#modeAes","#ivAes");
-
+setIvInput("#ivAes",false);
 
 function form_opt(opt){
     var url;
