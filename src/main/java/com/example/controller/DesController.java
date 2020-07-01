@@ -18,29 +18,22 @@ public class DesController {
 
     @RequestMapping("/encrypt")
     @ResponseBody
-    public String encrypt(String key, String iv, String plaintext, String ciphertext, String algo, String mode){
-//        System.out.println("encrypt key "+key);
-//        System.out.println("iv "+iv);
-//        System.out.println("plaintext "+plaintext);
-//        System.out.println("ciphertext "+ciphertext);
-//        System.out.println("algo "+algo);
-//        System.out.println("mode "+mode);
-        String ret = "";
+    public String encrypt(String keyDes, String ivDes, String plaintextDes, String modeDes){
+        String ret = "参数异常,请检查测试数据!";
         byte out[] = null;
         try {
-            if("ECB".equals(mode)){
-                out = desService.ecb_enc_dec(toolService.hex2byte(plaintext,plaintext.length()), toolService.hex2byte(key,key.length()),1);
-            }else if("CBC".equals(mode)){
-                out = desService.cbc_enc_dec(toolService.hex2byte(plaintext,plaintext.length()), toolService.hex2byte(key,key.length()), toolService.hex2byte(iv,iv.length()),1);
-            }else if("CFB".equals(mode)){
-                out = desService.cfb_enc_dec(toolService.hex2byte(plaintext,plaintext.length()), toolService.hex2byte(key,key.length()), toolService.hex2byte(iv,iv.length()),1);
-            }else if("OFB".equals(mode)){
-                out = desService.ofb_enc_dec(toolService.hex2byte(plaintext,plaintext.length()), toolService.hex2byte(key,key.length()), toolService.hex2byte(iv,iv.length()),1);
+            if("ECB".equals(modeDes)){
+                out = desService.ecb_enc_dec(toolService.hex2byte(plaintextDes,plaintextDes.length()), toolService.hex2byte(keyDes,keyDes.length()),1);
+            }else if("CBC".equals(modeDes)){
+                out = desService.cbc_enc_dec(toolService.hex2byte(plaintextDes,plaintextDes.length()), toolService.hex2byte(keyDes,keyDes.length()), toolService.hex2byte(ivDes,ivDes.length()),1);
+            }else if("CFB".equals(modeDes)){
+                out = desService.cfb_enc_dec(toolService.hex2byte(plaintextDes,plaintextDes.length()), toolService.hex2byte(keyDes,keyDes.length()), toolService.hex2byte(ivDes,ivDes.length()),1);
+            }else if("OFB".equals(modeDes)){
+                out = desService.ofb_enc_dec(toolService.hex2byte(plaintextDes,plaintextDes.length()), toolService.hex2byte(keyDes,keyDes.length()), toolService.hex2byte(ivDes,ivDes.length()),1);
             }
-            ret = toolService.byte2hex(out,plaintext.length()/2);
+            ret = toolService.byte2hex(out,plaintextDes.length()/2);
         } catch (Exception e) {
             e.printStackTrace();
-            return "请检测数据";
         }
 //        return "密文";
         return ret;
@@ -48,30 +41,22 @@ public class DesController {
 
     @RequestMapping("/decrypt")
     @ResponseBody
-    public String decrypt(String key, String iv, String plaintext, String ciphertext, String algo, String mode){
-//        System.out.println("decrypt key "+key);
-//        System.out.println("iv "+iv);
-//        System.out.println("plaintext "+plaintext);
-//        System.out.println("ciphertext "+ciphertext);
-//        System.out.println("algo "+algo);
-//        System.out.println("mode "+mode);
-
-        String ret = "";
+    public String decrypt(String keyDes, String ivDes, String ciphertextDes, String modeDes){
+        String ret = "参数异常,请检查测试数据!";
         byte out[] = null;
         try {
-            if("ECB".equals(mode)){
-                out = desService.ecb_enc_dec(toolService.hex2byte(ciphertext,ciphertext.length()), toolService.hex2byte(key,key.length()),0);
-            }else if("CBC".equals(mode)){
-                out = desService.cbc_enc_dec(toolService.hex2byte(ciphertext,ciphertext.length()), toolService.hex2byte(key,key.length()), toolService.hex2byte(iv,iv.length()),0);
-            }else if("CFB".equals(mode)){
-                out = desService.cfb_enc_dec(toolService.hex2byte(ciphertext,ciphertext.length()), toolService.hex2byte(key,key.length()), toolService.hex2byte(iv,iv.length()),0);
-            }else if("OFB".equals(mode)){
-                out = desService.ofb_enc_dec(toolService.hex2byte(ciphertext,ciphertext.length()), toolService.hex2byte(key,key.length()), toolService.hex2byte(iv,iv.length()),0);
+            if("ECB".equals(modeDes)){
+                out = desService.ecb_enc_dec(toolService.hex2byte(ciphertextDes,ciphertextDes.length()), toolService.hex2byte(keyDes,keyDes.length()),0);
+            }else if("CBC".equals(modeDes)){
+                out = desService.cbc_enc_dec(toolService.hex2byte(ciphertextDes,ciphertextDes.length()), toolService.hex2byte(keyDes,keyDes.length()), toolService.hex2byte(ivDes,ivDes.length()),0);
+            }else if("CFB".equals(modeDes)){
+                out = desService.cfb_enc_dec(toolService.hex2byte(ciphertextDes,ciphertextDes.length()), toolService.hex2byte(keyDes,keyDes.length()), toolService.hex2byte(ivDes,ivDes.length()),0);
+            }else if("OFB".equals(modeDes)){
+                out = desService.ofb_enc_dec(toolService.hex2byte(ciphertextDes,ciphertextDes.length()), toolService.hex2byte(keyDes,keyDes.length()), toolService.hex2byte(ivDes,ivDes.length()),0);
             }
-            ret = toolService.byte2hex(out,ciphertext.length()/2);
+            ret = toolService.byte2hex(out,ciphertextDes.length()/2);
         } catch (Exception e) {
             e.printStackTrace();
-            return "请检测数据";
         }
         return ret;
 //        return "明文";

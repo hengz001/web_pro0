@@ -24,11 +24,11 @@ public class RsaController {
 
     @RequestMapping("/generate")
     @ResponseBody
-    public Map generateRsa(int keyLen){
+    public Map generateRsa(int rsaKeyLen){
 //        System.out.println(keyLen);
         Map map = null;
         try {
-            KeyPair keyPair = rsaService.rsaGenerate(keyLen);
+            KeyPair keyPair = rsaService.rsaGenerate(rsaKeyLen);
             map = rsaService.rsaSplit(keyPair);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -98,10 +98,10 @@ public class RsaController {
             boolean bn = rsaService.rsaVerify((RSAKey) map.get("publicKey"),in,sign);
             if(bn){
 //                System.out.println("签名成功");
-                return "签名成功";
+                return "验签成功";
             }else{
 //                System.out.println("签名失败");
-                return "签名失败";
+                return "验签失败";
             }
         } catch (Exception ex) {
             ex.printStackTrace();

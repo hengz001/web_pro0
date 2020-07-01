@@ -18,13 +18,8 @@ public class AesController {
     @RequestMapping("/encrypt")
     @ResponseBody
     public String encrypt(String keyAes, String ivAes, String plaintextAes, String ciphertextAes, String algoAes, String modeAes){
-//        System.out.println("key= "+keyAes
-//        +" iv= "+ivAes
-//        +" plaintext= "+plaintextAes
-//        +" ciphertext= "+ciphertextAes
-//        +" algo= "+algoAes
-//        +" mode= "+modeAes);
         byte[] out = null;
+        String ret = "参数异常,请检查测试数据!";
         try {
             if("ECB".equals(modeAes)){
                 out = aesService.ecb_enc_dec_aes(
@@ -46,23 +41,19 @@ public class AesController {
                         toolService.hex2byte(keyAes,keyAes.length()),
                         toolService.hex2byte(ivAes,ivAes.length()),1);
             }
+            ret = toolService.byte2hex(out,out.length);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return toolService.byte2hex(out,out.length);
+        return ret;
 //        return "请检查AES数据";
     }
 
     @RequestMapping("/decrypt")
     @ResponseBody
     public String decrypt(String keyAes, String ivAes, String plaintextAes, String ciphertextAes, String algoAes, String modeAes){
-//        System.out.println("key= "+keyAes
-//        +" iv= "+ivAes
-//        +" plaintext= "+plaintextAes
-//        +" ciphertext= "+ciphertextAes
-//        +" algo= "+algoAes
-//        +" mode= "+modeAes);
         byte[] out = null;
+        String ret = "参数异常,请检查测试数据!";
         try {
             if("ECB".equals(modeAes)){
                 out = aesService.ecb_enc_dec_aes(
@@ -84,10 +75,12 @@ public class AesController {
                         toolService.hex2byte(keyAes,keyAes.length()),
                         toolService.hex2byte(ivAes,ivAes.length()),0);
             }
+            ret = toolService.byte2hex(out,out.length);;
         } catch (Exception e) {
             e.printStackTrace();
+            return "参数异常,请检查测试数据!";
         }
-        return toolService.byte2hex(out,out.length);
+        return ret;
 //        return "请检查AES数据";
     }
 }

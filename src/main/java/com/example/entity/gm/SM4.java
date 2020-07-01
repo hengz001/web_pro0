@@ -23,15 +23,11 @@ public class SM4 {
     final String SM4_ECB_NOPADDING = "SM4/ECB/NOPADDING";
     final String SM4_CBC_NOPADDING = "SM4/CBC/NOPADDING";
 
-    public byte[] sm4Enc(String mode, int enc, byte[] key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    public byte[] sm4EcbEnc(int enc, byte[] key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException {
         Key sm4Key = new SecretKeySpec(key,"SM4");
-        Cipher cipher = Cipher.getInstance(mode,"BC");
+        Cipher cipher = Cipher.getInstance(SM4_ECB_NOPADDING,"BC");
         cipher.init(enc==1?Cipher.ENCRYPT_MODE:Cipher.DECRYPT_MODE,sm4Key);
         return cipher.doFinal(in);
-    }
-
-    public byte[] sm4EcbEnc(int enc, byte[] key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException {
-        return sm4Enc(SM4_ECB_NOPADDING,enc,key,in);
     }
 
     public byte[] sm4EcbEncrypt(byte[] key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException {
@@ -41,15 +37,18 @@ public class SM4 {
         return sm4EcbEnc(Cipher.DECRYPT_MODE,key,in);
     }
 
-    public byte[] sm4CbcEnc(int enc, byte[] key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException {
-        return sm4Enc(SM4_CBC_NOPADDING,enc,key,in);
+    public byte[] sm4CbcEnc(int enc, byte[] key, byte in[],byte iv[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException, InvalidAlgorithmParameterException {
+        Key sm4Key = new SecretKeySpec(key,"SM4");
+        Cipher cipher = Cipher.getInstance(SM4_CBC_NOPADDING,"BC");
+        cipher.init(enc==1?Cipher.ENCRYPT_MODE:Cipher.DECRYPT_MODE,sm4Key,new IvParameterSpec(iv));
+        return cipher.doFinal(in);
     }
-    public byte[] sm4CbcEncrypt(byte[] key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException {
-        return sm4CbcEnc(Cipher.ENCRYPT_MODE,key,in);
+    public byte[] sm4CbcEncrypt(byte[] key, byte in[],byte iv[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException, InvalidAlgorithmParameterException {
+        return sm4CbcEnc(Cipher.ENCRYPT_MODE,key,in,iv);
     }
 
-    public byte[] sm4CbcDecrypt(byte[] key, byte in[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException {
-        return sm4CbcEnc(Cipher.DECRYPT_MODE,key,in);
+    public byte[] sm4CbcDecrypt(byte[] key, byte in[],byte iv[]) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, NoSuchProviderException, InvalidKeyException, InvalidAlgorithmParameterException {
+        return sm4CbcEnc(Cipher.DECRYPT_MODE,key,in,iv);
     }
 
 //    @Test
