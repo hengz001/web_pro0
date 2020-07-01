@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>算法验证</title>
     <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common.jsp"/>
+<%--    WEB-INF下文件无法使用pageContext访问--%>
+    <jsp:include page="/WEB-INF/views/common.jsp"/>
+
 </head>
 
 <body class="easyui-layout">
