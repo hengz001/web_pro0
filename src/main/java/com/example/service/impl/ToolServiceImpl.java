@@ -22,12 +22,18 @@ public class ToolServiceImpl implements ToolService {
     public byte[] hex2byte(String in, int inl){
         if(inl%2!=0) return null;
         in = in.toUpperCase();
+
         byte[] out = new byte[inl/2];
         List<Byte> list = new ArrayList<Byte>();
         byte h = 0,l=0;
         char c;
         for(int i=0; i<inl; i++){
             c = in.charAt(i);
+
+            if(c>'F'||c<'0'){
+                return null;
+            }
+
             if(i%2==0){
                 h = c>'9'?((byte) (c-'A'+10)):((byte) (c-'0'));
             }else{

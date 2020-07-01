@@ -11,8 +11,7 @@ setModeSelect("#modeDes","#ivDes");
 setIvInput("#ivDes",false);
 
 function form_opt(opt){
-    var url;
-    opt=='encrypt'?(url='des/encrypt'):(url='des/decrypt');
+    var url = (opt==1? 'des/encrypt': 'des/decrypt');
 
     $('#ffDes').form({
         url: url,
@@ -44,7 +43,7 @@ function form_opt(opt){
                 }
             }
 
-            if(opt=='encrypt'){
+            if(opt==1){
                 if(plaintext.length % 16!=0 || plaintext.length == 0){
                     alert('明文数据长度必须为64bit的整数倍，请自行填充!');
                     return false;
@@ -59,24 +58,24 @@ function form_opt(opt){
         },
         success: function(data){
             // alert(data);
-            if(opt!='encrypt'){
-                $('#plaintextDes').textbox('setValue',data);
-                $('#plaintextDesLen').html(data.length);
-            }else{
+            if(opt==1){
                 $('#ciphertextDes').textbox('setValue',data);
                 $('#ciphertextDesLen').html(data.length);
+            }else{
+                $('#plaintextDes').textbox('setValue',data);
+                $('#plaintextDesLen').html(data.length);
             }
         }
     });
 }
 
 $('#btn_encrypt_des').bind('click',function(){
-    form_opt('encrypt')
+    form_opt(1)
     $('#ffDes').submit();
 });
 
 $('#btn_decrypt_des').bind('click',function(){
-    form_opt('decrypt');
+    form_opt(0);
     $('#ffDes').submit();
 });
 
