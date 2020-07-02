@@ -22,7 +22,7 @@
                 <th></th>
                 <td align="center">
                     <select id="algoHash" name="algoHash" style="width:200px;"></select>
-                    <a id="btn_Hash" style="width:200px;" class="easyui-linkbutton" >Hash</a>
+                    <a id="btn_Hash" onclick="form_opt_hash('${pageContext.request.contextPath}/hash/digest');" style="width:200px;" class="easyui-linkbutton" >Hash</a>
                 </td>
             </tr>
         </table>
@@ -30,7 +30,6 @@
     <script src="${pageContext.request.contextPath}/js/hash.js"></script>
     <script>
         initCombobox('${pageContext.request.contextPath}/hash/hashList');
-        formSubmit('${pageContext.request.contextPath}/hash/digest');
     </script>
 </body>
 </html>

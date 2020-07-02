@@ -21,7 +21,7 @@
             <tr>
                 <th></th>
                 <td align="center">
-                    <a id="btn_SM3" onclick="hashSm3('${pageContext.request.contextPath}/sm3/hash')" style="width:200px;" class="easyui-linkbutton" >SM3</a>
+                    <a id="btn_SM3" onclick="form_opt_sm3('${pageContext.request.contextPath}/sm3/hash')" style="width:200px;" class="easyui-linkbutton" >SM3</a>
                 </td>
             </tr>
         </table>

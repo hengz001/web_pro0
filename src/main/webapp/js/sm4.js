@@ -8,7 +8,7 @@ setTextbox('#ciphertextSm4');
 setModeSelect("#modeSm4","#ivSm4");
 setIvInput("#ivSm4",false);
 //
-function form_opt(opt,url){
+function form_opt_sm4(opt,url){
     // var url;
     // opt=='encrypt'?(url='sm4/encrypt'):(url='sm4/decrypt');
 

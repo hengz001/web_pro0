@@ -1,5 +1,4 @@
 
-
 //
 setIvValid("#ivDes",'length[16,16]')
 setTextbox('#keyDes');
@@ -10,7 +9,7 @@ setTextbox('#ciphertextDes');
 setModeSelect("#modeDes","#ivDes");
 setIvInput("#ivDes",false);
 
-function form_opt(opt,url){
+function form_opt_des(opt,url){
     $('#ffDes').form({
         url: url,
         onSubmit: function(){
@@ -67,14 +66,3 @@ function form_opt(opt,url){
     });
     $('#ffDes').submit();
 }
-
-// $('#btn_encrypt_des').bind('click',function(){
-//     form_opt(1)
-//     $('#ffDes').submit();
-// });
-//
-// $('#btn_decrypt_des').bind('click',function(){
-//     form_opt(0);
-//     $('#ffDes').submit();
-// });
-

@@ -17,7 +17,7 @@ $('#rsaKeyLen').textbox({
 });
 
 //form method
-function formOpt(opt, url){
+function form_opt_rsa(opt, url){
     var n = $('#n').val();
     var e = $('#e').val();
     var d = $('#d').val();
@@ -101,30 +101,30 @@ function formOpt(opt, url){
     $('#ffRsa').submit();
 }
 
-//encrypt
-$('#rsaEncrypt').bind('click',function(){
-    // alert('加密');
-    formOpt(1,'rsa/encrypt');
-});
-
-//decrypt
-$('#rsaDecrypt').bind('click',function(){
-    // alert('解密');
-    formOpt(0,'rsa/decrypt');
-});
-
-//sign
-$('#rsaSign').bind('click',function(){
-    formOpt(2,'rsa/sign');
-});
-
-//verify
-$('#rsaVerify').bind('click',function(){
-    formOpt(3,'rsa/verify');
-});
+// //encrypt
+// $('#rsaEncrypt').bind('click',function(){
+//     // alert('加密');
+//     form_opt_rsa(1,'rsa/encrypt');
+// });
+//
+// //decrypt
+// $('#rsaDecrypt').bind('click',function(){
+//     // alert('解密');
+//     form_opt_rsa(0,'rsa/decrypt');
+// });
+//
+// //sign
+// $('#rsaSign').bind('click',function(){
+//     form_opt_rsa(2,'rsa/sign');
+// });
+//
+// //verify
+// $('#rsaVerify').bind('click',function(){
+//     form_opt_rsa(3,'rsa/verify');
+// });
 
 //generate rsa key
-function genRSA(url){
+function form_opt_rsa_gen(url){
     var rsaKeyLen = $('#rsaKeyLen').val();
     // alert(rsaKeyLen.length);
     if(rsaKeyLen.length==0){
@@ -171,52 +171,4 @@ function genRSA(url){
         }
     });
 }
-// $('#generateRsa').bind('click',function(){
-//     var rsaKeyLen = $('#rsaKeyLen').val();
-//     // alert(rsaKeyLen.length);
-//     if(rsaKeyLen.length==0){
-//         alert("请输入RSA长度!")
-//         return ;
-//     }
-//
-//     $.ajax({
-//         type:"POST",
-//         url:"rsa/generate",
-//         data: {rsaKeyLen:rsaKeyLen},
-//         success:function(data){
-//             var n = data.n;
-//             var e = data.e;
-//             var d = data.d;
-//             var p = data.p;
-//             var q = data.q;
-//             var dp = data.dp;
-//             var dq = data.dq;
-//             var qmp = data.qmp;
-//             // alert("n= "+n);
-//
-//             $('#n').textbox('setValue',data.n);
-//             $("#nLen").html(data.n.length);
-//             $('#e').textbox('setValue',data.e);
-//             $("#eLen").html(data.e.length);
-//             $('#d').textbox('setValue',data.d);
-//             $("#dLen").html(data.d.length);
-//             $('#p').textbox('setValue',data.p);
-//             $("#pLen").html(data.p.length);
-//             $('#q').textbox('setValue',data.q);
-//             $("#qLen").html(data.q.length);
-//             $('#dp').textbox('setValue',data.dp);
-//             $("#dpLen").html(data.dp.length);
-//             $('#dq').textbox('setValue',data.dq);
-//             $("#dqLen").html(data.dq.length);
-//             $('#qmp').textbox('setValue',data.qmp);
-//             $("#qmpLen").html(data.qmp.length);
-//             alert("密钥生成 successfully.");
-//
-//         },
-//         error:function(){
-//             alert("请检查参数! RSA长度");
-//         }
-//     });
-// });
-
 

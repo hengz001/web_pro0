@@ -80,11 +80,11 @@
                 </th>
                 <td>
                     <input class="easyui-numberbox" id="rsaKeyLen" name="rsaKeyLen" style="width:100px" class="easyui-textbox" data-options="prompt:'密钥长度'">
-                    <a id="generateRsa" onclick="genRSA('${pageContext.request.contextPath}/rsa/generate')" class="easyui-linkbutton" style="width:100px;">生成密钥</a>
-                    <a id="rsaEncrypt" class="easyui-linkbutton" style="width:64px;">加密</a>
-                    <a id="rsaDecrypt" class="easyui-linkbutton" style="width:64px;">解密</a>
-                    <a id="rsaSign" class="easyui-linkbutton" style="width:64px;">签名</a>
-                    <a id="rsaVerify" class="easyui-linkbutton" style="width:64px;">验签</a>
+                    <a id="generateRsa" onclick="form_opt_rsa_gen('${pageContext.request.contextPath}/rsa/generate')" class="easyui-linkbutton" style="width:100px;">生成密钥</a>
+                    <a id="rsaEncrypt" onclick="form_opt_rsa(1,'${pageContext.request.contextPath}/rsa/encrypt');" class="easyui-linkbutton" style="width:64px;">加密</a>
+                    <a id="rsaDecrypt" onclick="form_opt_rsa(0,'${pageContext.request.contextPath}/rsa/decrypt');" class="easyui-linkbutton" style="width:64px;">解密</a>
+                    <a id="rsaSign" onclick="form_opt_rsa(2,'${pageContext.request.contextPath}/rsa/sign');" class="easyui-linkbutton" style="width:64px;">签名</a>
+                    <a id="rsaVerify" onclick="form_opt_rsa(3,'${pageContext.request.contextPath}/rsa/verify');" class="easyui-linkbutton" style="width:64px;">验签</a>
                 </td>
             </tr>
         </table>

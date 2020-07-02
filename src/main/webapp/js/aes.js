@@ -1,6 +1,5 @@
 
 setIvValid("#ivAes",'length[32,32]')
-
 setTextbox('#keyAes');
 setTextbox('#ivAes');
 setTextbox('#plaintextAes');
@@ -8,7 +7,7 @@ setTextbox('#ciphertextAes');
 setModeSelect("#modeAes","#ivAes");
 setIvInput("#ivAes",false);
 
-function form_opt(opt,url){
+function form_opt_aes(opt,url){
     $('#ffAes').form({
         url: url,
         onSubmit: function(){
@@ -76,12 +75,3 @@ function form_opt(opt,url){
     });
     $('#ffAes').submit();
 }
-
-//
-// $('#btn_encrypt_aes').bind('click',function(){
-//     form_opt('encrypt')
-// });
-//
-// $('#btn_decrypt_aes').bind('click',function(){
-//     form_opt('decrypt');
-// });

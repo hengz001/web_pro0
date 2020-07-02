@@ -52,8 +52,8 @@
                         <option value="CFB">CFB</option>
                         <option value="OFB">OFB</option>
                     </select>
-                    <a id="btn_encrypt_aes" class="easyui-linkbutton" style="width:100px;" onclick="form_opt(1,'${pageContext.request.contextPath}/aes/encrypt')">加密</a>
-                    <a id="btn_decrypt_aes" class="easyui-linkbutton" style="width:100px;" onclick="form_opt(0,'${pageContext.request.contextPath}/aes/decrypt')">解密</a>
+                    <a id="btn_encrypt_aes" class="easyui-linkbutton" style="width:100px;" onclick="form_opt_aes(1,'${pageContext.request.contextPath}/aes/encrypt')">加密</a>
+                    <a id="btn_decrypt_aes" class="easyui-linkbutton" style="width:100px;" onclick="form_opt_aes(0,'${pageContext.request.contextPath}/aes/decrypt')">解密</a>
                 </td>
             </tr>
         </table>

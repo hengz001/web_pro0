@@ -16,19 +16,7 @@ function initCombobox(url){
     });
 }
 
-// $('#algoHash').combobox({
-//     url:'${pageContext.request.contextPath}/hash/hashList',
-//     valueField:'id',
-//     textField:'text',
-//     onLoadSuccess:function(){
-//         data = $(this).combobox('getData');
-//         if(data.length>0){
-//             $(this).combobox('select',data[0].text);
-//         }
-//     }
-// });
-
-function formSubmit(url){
+function form_opt_hash(url){
     $('#ffHash').form({
         url:url,
         onSubmit:function(){},
@@ -38,19 +26,6 @@ function formSubmit(url){
             $('#outHashLen').html(data.length);
         },
     })
+    $('#ffHash').submit();
 }
 
-// $('#ffHash').form({
-//     url:'${pageContext.request.contextPath}/hash/digest',
-//     onSubmit:function(){},
-//     success:function (data) {
-//         // alert(data);
-//         $('#outHash').textbox('setValue',data);
-//         $('#outHashLen').html(data.length);
-//     },
-// })
-
-$('#btn_Hash').bind('click',function () {
-    $('#ffHash').submit();
-    // alert(1);
-});
