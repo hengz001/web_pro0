@@ -8,10 +8,7 @@ setTextbox('#ciphertextAes');
 setModeSelect("#modeAes","#ivAes");
 setIvInput("#ivAes",false);
 
-function form_opt(opt){
-    var url;
-    opt=='encrypt'?(url='aes/encrypt'):(url='aes/decrypt');
-
+function form_opt(opt,url){
     $('#ffAes').form({
         url: url,
         onSubmit: function(){
@@ -53,7 +50,7 @@ function form_opt(opt){
             //     return false;
             // }
 
-            if(opt=='encrypt'){
+            if(opt==1){
                 if(plaintextAes.length % 32!=0 || plaintextAes.length == 0){
                     alert('明文数据长度必须为128bit的整数倍，请自行填充!');
                     return false;
@@ -68,7 +65,7 @@ function form_opt(opt){
         },
         success: function(data){
             // alert(data);
-            if(opt!='encrypt'){
+            if(opt!=1){
                 $('#plaintextAes').textbox('setValue',data);
                 $('#plaintextAesLen').html(data.length);
             }else{
@@ -77,14 +74,14 @@ function form_opt(opt){
             }
         }
     });
+    $('#ffAes').submit();
 }
 
-$('#btn_encrypt_aes').bind('click',function(){
-    form_opt('encrypt')
-    $('#ffAes').submit();
-});
-
-$('#btn_decrypt_aes').bind('click',function(){
-    form_opt('decrypt');
-    $('#ffAes').submit();
-});
+//
+// $('#btn_encrypt_aes').bind('click',function(){
+//     form_opt('encrypt')
+// });
+//
+// $('#btn_decrypt_aes').bind('click',function(){
+//     form_opt('decrypt');
+// });

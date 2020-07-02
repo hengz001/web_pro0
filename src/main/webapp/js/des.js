@@ -10,9 +10,7 @@ setTextbox('#ciphertextDes');
 setModeSelect("#modeDes","#ivDes");
 setIvInput("#ivDes",false);
 
-function form_opt(opt){
-    var url = (opt==1? 'des/encrypt': 'des/decrypt');
-
+function form_opt(opt,url){
     $('#ffDes').form({
         url: url,
         onSubmit: function(){
@@ -67,15 +65,16 @@ function form_opt(opt){
             }
         }
     });
+    $('#ffDes').submit();
 }
 
-$('#btn_encrypt_des').bind('click',function(){
-    form_opt(1)
-    $('#ffDes').submit();
-});
-
-$('#btn_decrypt_des').bind('click',function(){
-    form_opt(0);
-    $('#ffDes').submit();
-});
+// $('#btn_encrypt_des').bind('click',function(){
+//     form_opt(1)
+//     $('#ffDes').submit();
+// });
+//
+// $('#btn_decrypt_des').bind('click',function(){
+//     form_opt(0);
+//     $('#ffDes').submit();
+// });
 

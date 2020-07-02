@@ -18,6 +18,7 @@
         <a id="btn_des" class="easyui-linkbutton"  style="width:100px;">DES</a>
         <a id="btn_aes" class="easyui-linkbutton"  style="width:100px;">AES</a>
         <a id="btn_rsa" class="easyui-linkbutton"  style="width:100px;">RSA</a>
+        <a id="btn_hash" class="easyui-linkbutton"  style="width:100px;">HASH</a>
     <%--    <a id="btn_sm1" class="easyui-linkbutton"  style="width:100px;">SM1</a>--%>
 <%--        <a id="btn_sm2" class="easyui-linkbutton"  style="width:100px;">SM2</a>--%>
         <a id="btn_sm3" class="easyui-linkbutton"  style="width:100px;">SM3</a>

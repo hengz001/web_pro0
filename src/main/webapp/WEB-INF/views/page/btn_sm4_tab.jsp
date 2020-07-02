@@ -49,8 +49,8 @@
     <%--                    <option value="OFB">OFB</option>--%>
                     </select>
 
-                    <a id="btn_encrypt_sm4" class="easyui-linkbutton" style="width:60px;">加密</a>
-                    <a id="btn_decrypt_sm4" class="easyui-linkbutton" style="width:60px;">解密</a>
+                    <a id="btn_encrypt_sm4" onclick="form_opt(1,'${pageContext.request.contextPath}/sm4/encrypt')" class="easyui-linkbutton" style="width:60px;">加密</a>
+                    <a id="btn_decrypt_sm4" onclick="form_opt(0,'${pageContext.request.contextPath}/sm4/decrypt')" class="easyui-linkbutton" style="width:60px;">解密</a>
                 </td>
             </tr>
         </table>

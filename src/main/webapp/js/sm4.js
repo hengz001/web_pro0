@@ -8,9 +8,9 @@ setTextbox('#ciphertextSm4');
 setModeSelect("#modeSm4","#ivSm4");
 setIvInput("#ivSm4",false);
 //
-function form_opt(opt){
-    var url;
-    opt=='encrypt'?(url='sm4/encrypt'):(url='sm4/decrypt');
+function form_opt(opt,url){
+    // var url;
+    // opt=='encrypt'?(url='sm4/encrypt'):(url='sm4/decrypt');
 
     $('#ffSm4').form({
         url: url,
@@ -35,7 +35,7 @@ function form_opt(opt){
                 return false;
             }
 
-            if(opt=='encrypt'){
+            if(opt==1){
                 if(plaintext.length % 32!=0 || plaintext.length == 0){
                     alert('明文数据长度必须为128bit的整数倍，请自行填充!');
                     return false;
@@ -50,7 +50,7 @@ function form_opt(opt){
         },
         success: function(data){
             // alert(data);
-            if(opt!='encrypt'){
+            if(opt!=1){
                 $('#plaintextSm4').textbox('setValue',data);
                 $('#plaintextSm4Len').html(data.length);
             }else{
@@ -59,15 +59,16 @@ function form_opt(opt){
             }
         }
     });
+    $('#ffSm4').submit();
 }
-
-$('#btn_encrypt_sm4').bind('click',function(){
-    form_opt('encrypt')
-    $('#ffSm4').submit();
-});
-
-$('#btn_decrypt_sm4').bind('click',function(){
-    form_opt('decrypt');
-    $('#ffSm4').submit();
-});
+//
+// $('#btn_encrypt_sm4').bind('click',function(){
+//     form_opt('encrypt')
+//     // $('#ffSm4').submit();
+// });
+//
+// $('#btn_decrypt_sm4').bind('click',function(){
+//     form_opt('decrypt');
+//     // $('#ffSm4').submit();
+// });
 

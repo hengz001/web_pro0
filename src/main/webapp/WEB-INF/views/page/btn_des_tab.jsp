@@ -59,8 +59,8 @@
                         <option value="OFB">OFB</option>
                     </select>
 
-                    <a id="btn_encrypt_des" class="easyui-linkbutton" style="width:100px;">加密</a>
-                    <a id="btn_decrypt_des" class="easyui-linkbutton" style="width:100px;">解密</a>
+                    <a id="btn_encrypt_des" class="easyui-linkbutton" style="width:100px;" onclick="form_opt(1,'${pageContext.request.contextPath}/des/encrypt')">加密</a>
+                    <a id="btn_decrypt_des" class="easyui-linkbutton" style="width:100px;" onclick="form_opt(0,'${pageContext.request.contextPath}/des/decrypt')">解密</a>
                 </td>
             </tr>
         </table>

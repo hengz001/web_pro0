@@ -80,7 +80,7 @@
                 </th>
                 <td>
                     <input class="easyui-numberbox" id="rsaKeyLen" name="rsaKeyLen" style="width:100px" class="easyui-textbox" data-options="prompt:'密钥长度'">
-                    <a id="generateRsa" class="easyui-linkbutton" style="width:100px;">生成密钥</a>
+                    <a id="generateRsa" onclick="genRSA('${pageContext.request.contextPath}/rsa/generate')" class="easyui-linkbutton" style="width:100px;">生成密钥</a>
                     <a id="rsaEncrypt" class="easyui-linkbutton" style="width:64px;">加密</a>
                     <a id="rsaDecrypt" class="easyui-linkbutton" style="width:64px;">解密</a>
                     <a id="rsaSign" class="easyui-linkbutton" style="width:64px;">签名</a>

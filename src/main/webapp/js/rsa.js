@@ -124,7 +124,7 @@ $('#rsaVerify').bind('click',function(){
 });
 
 //generate rsa key
-$('#generateRsa').bind('click',function(){
+function genRSA(url){
     var rsaKeyLen = $('#rsaKeyLen').val();
     // alert(rsaKeyLen.length);
     if(rsaKeyLen.length==0){
@@ -134,7 +134,7 @@ $('#generateRsa').bind('click',function(){
 
     $.ajax({
         type:"POST",
-        url:"rsa/generate",
+        url:url,
         data: {rsaKeyLen:rsaKeyLen},
         success:function(data){
             var n = data.n;
@@ -170,6 +170,53 @@ $('#generateRsa').bind('click',function(){
             alert("请检查参数! RSA长度");
         }
     });
-});
+}
+// $('#generateRsa').bind('click',function(){
+//     var rsaKeyLen = $('#rsaKeyLen').val();
+//     // alert(rsaKeyLen.length);
+//     if(rsaKeyLen.length==0){
+//         alert("请输入RSA长度!")
+//         return ;
+//     }
+//
+//     $.ajax({
+//         type:"POST",
+//         url:"rsa/generate",
+//         data: {rsaKeyLen:rsaKeyLen},
+//         success:function(data){
+//             var n = data.n;
+//             var e = data.e;
+//             var d = data.d;
+//             var p = data.p;
+//             var q = data.q;
+//             var dp = data.dp;
+//             var dq = data.dq;
+//             var qmp = data.qmp;
+//             // alert("n= "+n);
+//
+//             $('#n').textbox('setValue',data.n);
+//             $("#nLen").html(data.n.length);
+//             $('#e').textbox('setValue',data.e);
+//             $("#eLen").html(data.e.length);
+//             $('#d').textbox('setValue',data.d);
+//             $("#dLen").html(data.d.length);
+//             $('#p').textbox('setValue',data.p);
+//             $("#pLen").html(data.p.length);
+//             $('#q').textbox('setValue',data.q);
+//             $("#qLen").html(data.q.length);
+//             $('#dp').textbox('setValue',data.dp);
+//             $("#dpLen").html(data.dp.length);
+//             $('#dq').textbox('setValue',data.dq);
+//             $("#dqLen").html(data.dq.length);
+//             $('#qmp').textbox('setValue',data.qmp);
+//             $("#qmpLen").html(data.qmp.length);
+//             alert("密钥生成 successfully.");
+//
+//         },
+//         error:function(){
+//             alert("请检查参数! RSA长度");
+//         }
+//     });
+// });
 
 

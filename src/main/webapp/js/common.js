@@ -1,6 +1,6 @@
 
 function setTextbox(id){
-    $(id).textbox({prompt:'请输入16进制数据'});
+    $(id).textbox({prompt:'16进制数据'});
     $(id).textbox('textbox').bind('input propertychange', function(e){
         var text = $(id).textbox('getText');
         var len = text.length;
