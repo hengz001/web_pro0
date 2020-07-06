@@ -24,6 +24,8 @@
         <a id="btn_sm3" class="easyui-linkbutton"  style="width:100px;">SM3</a>
         <a id="btn_sm4" class="easyui-linkbutton"  style="width:100px;">SM4</a>
         <a id="btn_sponsor" class="easyui-linkbutton" style="width:100px;">捐赠</a>
+<%--        <a id="btn_test_user" class="easyui-linkbutton" style="width:100px;">test_user</a>--%>
+        <a id="btn_test_user2" class="easyui-linkbutton" style="width:100px;">test_user2</a>
     </div>
 
     <div data-options="region:'center',title:''" style="padding:1px;background:#eee;">

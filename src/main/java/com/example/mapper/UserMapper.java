@@ -18,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User sel(Integer id);
+
+
 }
